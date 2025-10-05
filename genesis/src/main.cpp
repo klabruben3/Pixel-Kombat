@@ -30,16 +30,17 @@ int main() {
     window.setFramerateLimit(60);
 
     const int TILESIZE = 20; // size of each tile in pixels
-    const int speed = 5.f; // size of each tile in pixels
+    const float speed = 5.f; // movement of characters
 
-    // Circle with radius 50
-    CircleShape circle(20/2.5f);
+    // Circle with radius 10
+    CircleShape circle(TILESIZE/2.f);
     circle.setFillColor(Color::Red);
     
     float radius =  circle.getRadius();
     
     // Set origin to center
     circle.setOrigin({radius, radius});
+    circle.scale({.9, .9});
 
     Vector2f atpos;
 
@@ -54,6 +55,42 @@ int main() {
     }
 
     circle.setPosition(atpos);
+
+    struct block{
+            RectangleShape brick;
+            char id;
+
+            block(int x, int y, char c){
+                brick.setSize({(float)TILESIZE, (float)TILESIZE});
+                brick.setPosition({(float)(x * TILESIZE), (float)(y * TILESIZE)});
+                
+                if(c == '#') brick.setFillColor(Color::Blue);
+                if(c == '*') brick.setFillColor(Color::Black);
+                if(c == '@') brick.setFillColor(Color::Black);
+                id = c;
+            }
+    };
+
+    std::vector<std::vector<block>> wall;
+
+    for (int y = 0; y < stage.size(); y++) {
+        std::vector<block> bRows;
+        for (int x = 0; x < stage[y].size(); x++) {
+            char tile = stage[y][x];
+            block b(x, y, tile);
+
+            bRows.push_back(b);
+        }
+        wall.push_back(bRows);
+    }
+
+    bool isIntersect = false;
+
+    int xD = -1;
+    int xPastD;
+
+    int yD;
+    int yPastD;
     
     while (window.isOpen()) {
         // Event handling (visitor style)
@@ -62,42 +99,31 @@ int main() {
             window.close();
         }
 
-        struct walls{
-            std::vector<RectangleShape> blocks;
-            char id;
-        };
-
-        std::vector<walls> w;
-        
-        for (size_t y = 0; y < stage.size(); y++) {
-            for (size_t x = 0; x < stage[y].size(); x++) {
-                char tile = stage[y][x];
-                walls wall;
-                
-                RectangleShape block({(float)TILESIZE, (float)TILESIZE});
-                block.setPosition({(float)(x * TILESIZE), (float)(y * TILESIZE)});
-            
-                if (tile == '#') block.setFillColor(Color::Blue);  wall.id = tile; // wall
-                if (tile == '*') block.setFillColor(Color::Black); wall.id = tile; // floor
-                if (tile == '@') block.setFillColor(Color::Black); wall.id = tile; // floor
-
-                wall.blocks.push_back(block);
-                w.push_back(wall);
-            }
+        if(xD == -1){
+            circle.move({-speed, 0});
+            xPastD = xD;
+        } else if(xD == 1){
+            circle.move({speed, 0});
+            xPastD = xD;
         }
+        
+        if(yD == -1){
+            circle.move({0, -speed});
+            yPastD = yD;
+        }else if(yD == 1) {
+            circle.move({0, speed});
+            yPastD = yD;
+        }
+
 
         if (Joystick::isConnected(0)) {
             float x = Joystick::getAxisPosition(0, Joystick::Axis::X);
             float y = Joystick::getAxisPosition(0, Joystick::Axis::Y);
 
-            int xD = (std::abs(x) > 15) ? x/std::abs(x) : 0;
-            int yD = (std::abs(y) > 15) ? y/std::abs(y) : 0;
+            xD = (std::abs(x) > 15) ? x/std::abs(x) : xPastD;
+            yD = (std::abs(y) > 15) ? y/std::abs(y) : yPastD;
 
-            if(xD == -1) circle.move({-speed, 0});
-            else if(xD == 1) circle.move({speed, 0});
-
-            if(yD == -1) circle.move({0, -speed});
-            else if(yD == 1) circle.move({0, speed});                
+            std::cout << xD << " " << yD << std::endl;
         } else {
             static bool printed = false;
             if (!printed) {
@@ -106,20 +132,30 @@ int main() {
             }
         }
 
-        for(size_t y = 0; y < w.size(); y++){
-            for (size_t x = 0; x < w[y].blocks.size(); x++) {
-                RectangleShape tile = w[y].blocks[x];
-                window.draw(tile);
+        window.clear();
+        for(auto &row : wall){
+            for (auto &col : row) {
+                window.draw(col.brick);
 
-                if(circle.getGlobalBounds().findIntersection(tile.getGlobalBounds())){
-                    std::cout << "finally" << std::endl; 
-                }
+                // std::optional<FloatRect> intersection = circle.getGlobalBounds().findIntersection(col.brick.getGlobalBounds());
+                // if(intersection.has_value()){
+                //     std::cout << "Contact made." << std::endl;
+                //     if(col.id == '#'){
+                //         isIntersect = true;
+                //         std::cout << "# activated" << std::endl;
+                //     }
+                // }else{
+                //     isIntersect = false;
+                //     // intersection.reset();
+                // }
+                // intersection.reset();
             }
         }
 
         // Draw
         window.draw(circle);
         window.display();
-        window.clear();
     }
+
+    return 0;
 }

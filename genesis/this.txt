@@ -1,0 +1,17 @@
+PacManProject/
+│
+├── src/
+│
+├── include/        
+│
+├── extern/         
+│   └── SFML/
+│       ├── include/
+│       ├── lib/    
+│       └── bin/    
+│
+├── bin/
+│
+├── .vscode      
+    └── launch.json 
+    └── tasks.json 

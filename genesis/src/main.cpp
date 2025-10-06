@@ -44,8 +44,8 @@ int main() {
 
     Vector2f atpos;
 
-    for(size_t y = 0; y < stage.size(); y++){
-        for(size_t x = 0; x < stage[y].size(); x++){
+    for(int y = 0; y < stage.size(); y++){
+        for(int x = 0; x < stage[y].size(); x++){
             // create a position for the restart position
             if(stage[y][x] == '@'){
                 atpos = Vector2f(x * TILESIZE + radius, y * TILESIZE + radius);
@@ -84,13 +84,10 @@ int main() {
         wall.push_back(bRows);
     }
 
-    bool isIntersect = false;
+    bool run = true;
 
-    int xD = -1;
-    int xPastD;
-
-    int yD;
-    int yPastD;
+    int xPastD = -1;
+    int yPastD = 0;
     
     while (window.isOpen()) {
         // Event handling (visitor style)
@@ -99,31 +96,28 @@ int main() {
             window.close();
         }
 
-        if(xD == -1){
-            circle.move({-speed, 0});
-            xPastD = xD;
-        } else if(xD == 1){
-            circle.move({speed, 0});
-            xPastD = xD;
+        if(run){
+            if(yPastD == 0){
+                if(xPastD == -1) circle.move({-speed, 0});
+                else if(xPastD == 1) circle.move({speed, 0});
+            }else{
+                if(yPastD -1) circle.move({0, -speed});
+                else if(yPastD == 1) circle.move({0, speed});
+            }
         }
-        
-        if(yD == -1){
-            circle.move({0, -speed});
-            yPastD = yD;
-        }else if(yD == 1) {
-            circle.move({0, speed});
-            yPastD = yD;
-        }
-
 
         if (Joystick::isConnected(0)) {
             float x = Joystick::getAxisPosition(0, Joystick::Axis::X);
             float y = Joystick::getAxisPosition(0, Joystick::Axis::Y);
 
-            xD = (std::abs(x) > 15) ? x/std::abs(x) : xPastD;
-            yD = (std::abs(y) > 15) ? y/std::abs(y) : yPastD;
-
-            std::cout << xD << " " << yD << std::endl;
+            if(std::abs(x) > 15){
+                xPastD = x/std::abs(x);
+                yPastD = 0;
+                run = true;
+            } else if(std::abs(y) > 15) {
+                yPastD = y/std::abs(y);
+                xPastD = 0;
+            }
         } else {
             static bool printed = false;
             if (!printed) {
@@ -137,20 +131,19 @@ int main() {
             for (auto &col : row) {
                 window.draw(col.brick);
 
-                // std::optional<FloatRect> intersection = circle.getGlobalBounds().findIntersection(col.brick.getGlobalBounds());
-                // if(intersection.has_value()){
-                //     std::cout << "Contact made." << std::endl;
-                //     if(col.id == '#'){
-                //         isIntersect = true;
-                //         std::cout << "# activated" << std::endl;
-                //     }
-                // }else{
-                //     isIntersect = false;
-                //     // intersection.reset();
-                // }
-                // intersection.reset();
+                if(col.id == '#' && run == true){
+                    std::optional<FloatRect> intersection = circle.getGlobalBounds().findIntersection(col.brick.getGlobalBounds());
+                    if(intersection.has_value()){
+                        run = false;
+                        Vector2f brickCenter = col.brick.getGlobalBounds().getCenter();
+                        Vector2f circleCenter = circle.getGlobalBounds().getCenter();
+                        std::cout << brickCenter.x + radius << " " << circleCenter.x - radius + speed << std::endl;
+                    }
+                }
             }
         }
+
+        std::cout << run << std::endl;
 
         // Draw
         window.draw(circle);

@@ -27,7 +27,7 @@ std::vector<std::string> stage = {
 };
 
 const int TILESIZE = 20;
-const float speed = 2.f;
+const float speed = 2;
 
 // Creates the circle
 CircleShape circle(TILESIZE/2.f);
@@ -64,6 +64,15 @@ void movePac(int &keycode){
     else if(keycode == 74) circle.move({0, speed});
 }
 
+// bool runL = true;
+
+void reset(int &keycode){
+    if(keycode == 71) circle.move({speed, 0});
+    else if(keycode == 72) circle.move({-speed, 0});
+    else if(keycode == 73) circle.move({0, speed});
+    else if(keycode == 74) circle.move({0, -speed});
+}
+
 struct block{
     RectangleShape brick;
     char id;
@@ -97,7 +106,7 @@ void buildWall(){
 
 int main(){
     RenderWindow window(VideoMode({800u, 600u}), "Controller Test");
-    // window.setFramerateLimit(60);
+    window.setFramerateLimit(60);
 
     setCircleProperties();
     buildWall();
@@ -116,18 +125,33 @@ int main(){
 
                 // Insures keycode is altered only when directional keys are pressed
                 if(code == 71 || code == 72 || code == 73 || code == 74) keycode = code;
+                movePac(keycode);
             }
         }
-
-        movePac(keycode);
-
+        
+        
         // Puts the objects on screen
         window.clear(Color::Black);
         for(auto &row : wall){
             for(auto col : row){
+                Vector2f brickCenter = col.brick.getGlobalBounds().getCenter();
+                Vector2f circleCenter = circle.getGlobalBounds().getCenter();
+                // if(col.id == '#' && brickCenter.x == circleCenter.x && col.id == '#' && brickCenter.y == circleCenter.y){
+                //     optional<FloatRect> intercept = col.brick.getGlobalBounds().findIntersection(circle.getGlobalBounds());
+                //     if(intercept.has_value()){
+                //         reset(keycode);
+                //         keycode = 0;
+                //     }
+                // }
+
+                if(col.id == '#' && brickCenter.x == circleCenter.x && abs(brickCenter.y - circleCenter.y) == TILESIZE){
+                    col.brick.setFillColor(Color::Green);
+                }
+                
                 window.draw(col.brick);
             }
         }
+
         window.draw(circle);
         window.display();
     }

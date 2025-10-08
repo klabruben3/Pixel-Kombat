@@ -7,23 +7,30 @@ using namespace sf;
 using namespace std;
 
 std::vector<std::string> stage = {
-"#########################",
-"#***********************#",
-"#*###*#####*##*#####*###*#",
-"#***********@***********#",
-"#*###*##*########*##*###*#",
-"#****##****##****##****#",
-"###*##*##*##*##*##*##*###",
-"#****##****##****##****#",
-"#*###*##*########*##*###*#",
-"#***********************#",
-"#*###*##*########*##*###*#",
-"#****##****##****##****#",
-"###*##*##*##*##*##*##*###",
-"#****##****##****##****#",
-"#*###*#####*##*#####*###*#",
-"#***********************#",
-"#########################"
+"#######################",
+"#***#*************#***#",
+"#*#*#*#####*#####*#*#*#",
+"#*******#*****#*******#",
+"###*#*#*#*###*#*#*#*###",
+"#***#*#*#*#_#*#*#*#***#",
+"#*#*#*#*#*###*#*#*#*#*#",
+"#***#*#*********#*#***#",
+"#####*#*#######*#*#####",
+"#*****#*********#*****#",
+"#_#####*###_###*#####_#",
+"********#RC_GP#********",
+"#_#####*#######*#####_#",
+"#*****#*********#*****#",
+"#####*#*#######*#*#####",
+"#***#*#*********#*#***#",
+"#*#*#*#*#*###*#*#*#*#*#",
+"#***#*#*#*#_#*#*#*#***#",
+"###*#*#*#*###*#*#*#*###",
+"#*******#**@**#*******#",
+"#*#*#*#####*#####*#*#*#",
+"#***#*************#***#",
+"#######################",
+
 };
 
 const int TILESIZE = 20;
@@ -64,14 +71,12 @@ void movePac(int &keycode){
     else if(keycode == 74) circle.move({0, speed});
 }
 
-// bool runL = true;
-
-void reset(int &keycode){
-    if(keycode == 71) circle.move({speed, 0});
-    else if(keycode == 72) circle.move({-speed, 0});
-    else if(keycode == 73) circle.move({0, speed});
-    else if(keycode == 74) circle.move({0, -speed});
-}
+// void reset(int &keycode){
+//     if(keycode == 71) circle.move({speed, 0});
+//     else if(keycode == 72) circle.move({-speed, 0});
+//     else if(keycode == 73) circle.move({0, speed});
+//     else if(keycode == 74) circle.move({0, -speed});
+// }
 
 struct block{
     RectangleShape brick;
@@ -84,6 +89,11 @@ struct block{
         if(c == '#') brick.setFillColor(Color::Blue);
         if(c == '*') brick.setFillColor(Color::Black);
         if(c == '@') brick.setFillColor(Color::Black);
+        if(c == '_') brick.setFillColor(Color::Black);
+        if(c == 'R') brick.setFillColor(Color::Black);
+        if(c == 'C') brick.setFillColor(Color::Black);
+        if(c == 'G') brick.setFillColor(Color::Black);
+        if(c == 'P') brick.setFillColor(Color::Black);
         id = c;
     }
 };
@@ -136,18 +146,17 @@ int main(){
             for(auto col : row){
                 Vector2f brickCenter = col.brick.getGlobalBounds().getCenter();
                 Vector2f circleCenter = circle.getGlobalBounds().getCenter();
-                // if(col.id == '#' && brickCenter.x == circleCenter.x && col.id == '#' && brickCenter.y == circleCenter.y){
-                //     optional<FloatRect> intercept = col.brick.getGlobalBounds().findIntersection(circle.getGlobalBounds());
-                //     if(intercept.has_value()){
-                //         reset(keycode);
-                //         keycode = 0;
-                //     }
-                // }
-
-                if(col.id == '#' && brickCenter.x == circleCenter.x && abs(brickCenter.y - circleCenter.y) == TILESIZE){
-                    col.brick.setFillColor(Color::Green);
-                }
                 
+                if(col.id == '*' && brickCenter.x == circleCenter.x || col.id == '*' && brickCenter.y == circleCenter.y){
+                    optional<FloatRect> intercept = col.brick.getGlobalBounds().findIntersection(circle.getGlobalBounds());
+                    if(intercept.has_value()){
+                        col.brick.setFillColor(Color::Green);
+                    }
+                }
+
+                // if(col.id == '#' && abs(brickCenter.y - circleCenter.y) == TILESIZE){
+                    //     col.brick.setFillColor(Color::Green);
+                    // }
                 window.draw(col.brick);
             }
         }

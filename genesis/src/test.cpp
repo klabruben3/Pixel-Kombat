@@ -1,7 +1,6 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include <cmath>
-#include <typeinfo>
 
 using namespace sf;
 using namespace std;
@@ -34,49 +33,49 @@ std::vector<std::string> stage = {
 };
 
 const int TILESIZE = 20;
-const float speed = 2;
-
-// Creates the circle
-CircleShape circle(TILESIZE/2.f);
+const float speed = 50;
 
 // Gives properties to the circle
-void setCircleProperties(){
-    float radius =  circle.getRadius();
-    
-    // sets attributes
-    circle.setFillColor(Color::Red);
-    circle.setOrigin({radius, radius});
-    
+Vector2f atPos(Sprite pac){    
     Vector2f atpos;
 
-    // Makes sure
     for(int y = 0; y < stage.size(); y++){
         for(int x = 0; x < stage[y].size(); x++){
             // create a position for the restart position
+
             if(stage[y][x] == '@'){
-                atpos = Vector2f(x * TILESIZE + radius, y * TILESIZE + radius);
+                atpos = Vector2f(x * TILESIZE + pac.getGlobalBounds().getCenter().x, y * TILESIZE - pac.getGlobalBounds().getCenter().y);
                 break;
             }
-        }        
+        }
     }
-    
-    circle.setPosition(atpos);
+
+    return atpos;
 }
 
 // Pacman movements
-void movePac(int &keycode){
-    if(keycode == 71) circle.move({-speed, 0});
-    else if(keycode == 72) circle.move({speed, 0});
-    else if(keycode == 73) circle.move({0, -speed});
-    else if(keycode == 74) circle.move({0, speed});
+void movePac(int &keycode, Sprite &pac){
+    if(keycode == 71){
+        pac.move({-speed, 0});
+        pac.setRotation(degrees(180));
+    } else if(keycode == 72){
+        pac.move({speed, 0});
+         pac.setRotation(degrees(0));
+    } else if(keycode == 73){
+        pac.move({0, -speed});
+        pac.setRotation(degrees(270));
+    } else if(keycode == 74){
+        pac.move({0, speed});
+        pac.setRotation(degrees(90));
+    }
 }
 
-// void reset(int &keycode){
-//     if(keycode == 71) circle.move({speed, 0});
-//     else if(keycode == 72) circle.move({-speed, 0});
-//     else if(keycode == 73) circle.move({0, speed});
-//     else if(keycode == 74) circle.move({0, -speed});
-// }
+void reset(int &keycode, Sprite &pac){
+    if(keycode == 71) pac.move({speed, 0});
+    else if(keycode == 72) pac.move({-speed, 0});
+    else if(keycode == 73) pac.move({0, speed});
+    else if(keycode == 74) pac.move({0, -speed});
+}
 
 struct block{
     RectangleShape brick;
@@ -101,13 +100,14 @@ struct block{
 // Making a replica of the stage array into walls with id and custom properties
 std::vector<std::vector<block>> wall;
 
+
 void buildWall(){
     for (int y = 0; y < stage.size(); y++) {
         std::vector<block> bRows;
         for (int x = 0; x < stage[y].size(); x++) {
             char tile = stage[y][x];
             block b(x, y, tile);
-    
+            
             bRows.push_back(b);
         }
         wall.push_back(bRows);
@@ -116,15 +116,28 @@ void buildWall(){
 
 int main(){
     RenderWindow window(VideoMode({800u, 600u}), "Controller Test");
-    window.setFramerateLimit(60);
+    window.setFramerateLimit(10);
 
-    setCircleProperties();
     buildWall();
 
-    while (window.isOpen()) {
-        // Captures the code of the keyboard key being pressed and initializes it to keycode
-        int keycode;
+    const int PAC_FRAMES = 3;
+    const int FRAME_SIZE = 30;
+    int pacCurrentFrame = 0;
 
+    Texture atlas;
+    if (!atlas.loadFromFile("C:\\Users\\klabr\\Desktop\\Projects\\2d project\\Pixel Kombat\\genesis\\assets\\PMSprites.png")) return -1;
+    atlas.setSmooth(false);
+    Sprite sprites(atlas);
+    Sprite pac = sprites;
+    pac.setOrigin({FRAME_SIZE/2, FRAME_SIZE/2});
+    pac.setPosition(atPos(pac));
+    
+    
+    
+    // Captures the code of the keyboard key being pressed and initializes it to keycode
+    int keycode;
+
+    while (window.isOpen()) {
         // Listens for events
         while (auto event = window.pollEvent()){
             if (event->is<Event::Closed>()) window.close();
@@ -135,33 +148,38 @@ int main(){
 
                 // Insures keycode is altered only when directional keys are pressed
                 if(code == 71 || code == 72 || code == 73 || code == 74) keycode = code;
-                movePac(keycode);
             }
         }
         
+        // Iterates throught the pacman frames in atlas
+        pac.setTextureRect(IntRect({pacCurrentFrame, 0}, {FRAME_SIZE, FRAME_SIZE}));
+        pacCurrentFrame = (!PAC_FRAMES == pacCurrentFrame) ? pacCurrentFrame + FRAME_SIZE : 0;
+
+        movePac(keycode, pac);
         
         // Puts the objects on screen
         window.clear(Color::Black);
-        for(auto &row : wall){
-            for(auto col : row){
-                Vector2f brickCenter = col.brick.getGlobalBounds().getCenter();
-                Vector2f circleCenter = circle.getGlobalBounds().getCenter();
+        // for(auto &row : wall){
+        //     for(auto col : row){
+        //         Vector2f brickCenter = col.brick.getGlobalBounds().getCenter();
+        //         Vector2f circleCenter = circle.getGlobalBounds().getCenter();
                 
-                if(col.id == '*' && brickCenter.x == circleCenter.x || col.id == '*' && brickCenter.y == circleCenter.y){
-                    optional<FloatRect> intercept = col.brick.getGlobalBounds().findIntersection(circle.getGlobalBounds());
-                    if(intercept.has_value()){
-                        col.brick.setFillColor(Color::Green);
-                    }
-                }
+        //         if(col.id == '*' && brickCenter.x == circleCenter.x || col.id == '*' && brickCenter.y == circleCenter.y){
+        //             optional<FloatRect> intercept = col.brick.getGlobalBounds().findIntersection(circle.getGlobalBounds());
+        //             if(intercept.has_value()){
+        //                 col.brick.setFillColor(Color::Green);
+        //             }
+        //         }
 
-                // if(col.id == '#' && abs(brickCenter.y - circleCenter.y) == TILESIZE){
-                    //     col.brick.setFillColor(Color::Green);
-                    // }
-                window.draw(col.brick);
-            }
-        }
+        //         if(col.id == '#' && abs(brickCenter.y - circleCenter.y) == TILESIZE){
+        //             keycode = 0;
+        //             reset(keycode);
+        //         }
+        //         window.draw(col.brick);
+        //     }
+        // }
 
-        window.draw(circle);
+        window.draw(pac);
         window.display();
     }
 

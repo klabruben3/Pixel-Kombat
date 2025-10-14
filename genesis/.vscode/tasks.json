@@ -26,7 +26,7 @@
             
                 // Output
                 "-o",
-                "${workspaceFolder}/bin/pixel_kombat.exe"
+                "${workspaceFolder}/bin/pkg.exe"
             ],
             "options": {
                 "cwd": "${fileDirname}"

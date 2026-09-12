@@ -214,19 +214,19 @@ int main()
 
     // defines the atlas for the characters
     Texture character_atlas;
-    if (!character_atlas.loadFromFile("C:\\Users\\klabr\\Desktop\\Projects\\2d project\\Pixel Kombat\\genesis\\assets\\pacman.png"))
+    if (!character_atlas.loadFromFile("C:\\Users\\klabr\\Desktop\\Projects\\Game dev\\2d project\\Pixel-Kombat\\genesis\\assets\\pacman.png"))
         return -1;
     character_atlas.setSmooth(false);
 
     // defines the atlas for the stage;
     Texture stage_atlas;
-    if (!stage_atlas.loadFromFile("C:\\Users\\klabr\\Desktop\\Projects\\2d project\\Pixel Kombat\\genesis\\assets\\stage_atlas.png"))
+    if (!stage_atlas.loadFromFile("C:\\Users\\klabr\\Desktop\\Projects\\Game dev\\2d project\\Pixel-Kombat\\genesis\\assets\\stage_atlas.png"))
         return -1;
     stage_atlas.setSmooth(false);
 
     // defines the atlas for the food pallette
     Texture food_atlas;
-    if (!food_atlas.loadFromFile("C:\\Users\\klabr\\Desktop\\Projects\\2d project\\Pixel Kombat\\genesis\\assets\\food.png"))
+    if (!food_atlas.loadFromFile("C:\\Users\\klabr\\Desktop\\Projects\\Game dev\\2d project\\Pixel-Kombat\\genesis\\assets\\food.png"))
         return -1;
     food_atlas.setSmooth(false);
 

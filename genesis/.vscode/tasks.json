@@ -22,6 +22,7 @@
                 "-L",
                 "${workspaceFolder}/extern/SFML/lib",
                 "-lsfml-graphics-d",
+                "-lsfml-audio-d",
                 "-lsfml-window-d",
                 "-lsfml-system-d",
             

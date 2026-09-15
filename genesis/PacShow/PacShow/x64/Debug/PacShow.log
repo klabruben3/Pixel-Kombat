@@ -1,0 +1,152 @@
+﻿  PacShow.cpp
+C:\Users\Administrator\Documents\VisualStudio2022Proj\C++\PacShow\PacShow\maze.h(135,42): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Administrator\Documents\VisualStudio2022Proj\C++\PacShow\PacShow\maze.h(135,34): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Administrator\Documents\VisualStudio2022Proj\C++\PacShow\PacShow\maze.h(151,54): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Administrator\Documents\VisualStudio2022Proj\C++\PacShow\PacShow\maze.h(151,35): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Administrator\Documents\VisualStudio2022Proj\C++\PacShow\PacShow\targetCalc.h(31,38): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Administrator\Documents\VisualStudio2022Proj\C++\PacShow\PacShow\targetCalc.h(31,26): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Administrator\Documents\VisualStudio2022Proj\C++\PacShow\PacShow\targetCalc.h(68,31): warning C4244: '+=': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Administrator\Documents\VisualStudio2022Proj\C++\PacShow\PacShow\targetCalc.h(69,31): warning C4244: '+=': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Administrator\Documents\VisualStudio2022Proj\C++\PacShow\PacShow\targetCalc.h(75,25): warning C4244: '=': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Administrator\Documents\VisualStudio2022Proj\C++\PacShow\PacShow\targetCalc.h(76,25): warning C4244: '=': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Administrator\Documents\VisualStudio2022Proj\C++\PacShow\PacShow\targetCalc.h(80,10): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Administrator\Documents\VisualStudio2022Proj\C++\PacShow\PacShow\targetCalc.h(81,10): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Administrator\Documents\VisualStudio2022Proj\C++\PacShow\PacShow\gameText.h(52,17): warning C4244: '=': conversion from 'time_t' to 'int', possible loss of data
+C:\Users\Administrator\Documents\VisualStudio2022Proj\C++\PacShow\PacShow\gameText.h(88,10): warning C4244: 'initializing': conversion from 'time_t' to 'int', possible loss of data
+C:\Users\Administrator\Documents\VisualStudio2022Proj\C++\PacShow\PacShow\fruit.h(110,17): warning C4244: '=': conversion from 'time_t' to 'int', possible loss of data
+C:\Users\Administrator\Documents\VisualStudio2022Proj\C++\PacShow\PacShow\fruit.h(117,19): warning C4244: '=': conversion from 'time_t' to 'int', possible loss of data
+C:\Users\Administrator\Documents\VisualStudio2022Proj\C++\PacShow\PacShow\fruit.h(128,43): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Administrator\Documents\VisualStudio2022Proj\C++\PacShow\PacShow\fruit.h(128,35): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Administrator\Documents\VisualStudio2022Proj\C++\PacShow\PacShow\starter.h(100,32): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Administrator\Documents\VisualStudio2022Proj\C++\PacShow\PacShow\starter.h(217,22): warning C4244: '=': conversion from 'time_t' to 'int', possible loss of data
+C:\Users\Administrator\Documents\VisualStudio2022Proj\C++\PacShow\PacShow\starter.h(250,1): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\Administrator\Documents\VisualStudio2022Proj\C++\PacShow\PacShow\ghost.h(49,74): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Administrator\Documents\VisualStudio2022Proj\C++\PacShow\PacShow\ghost.h(43): message : while compiling class template member function 'void Ghost<Starter>::reset(void)'
+C:\Users\Administrator\Documents\VisualStudio2022Proj\C++\PacShow\PacShow\starter.h(361): message : see reference to function template instantiation 'void Ghost<Starter>::reset(void)' being compiled
+C:\Users\Administrator\Documents\VisualStudio2022Proj\C++\PacShow\PacShow\starter.h(52): message : see reference to class template instantiation 'Ghost<Starter>' being compiled
+C:\Users\Administrator\Documents\VisualStudio2022Proj\C++\PacShow\PacShow\ghost.h(49,53): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Administrator\Documents\VisualStudio2022Proj\C++\PacShow\PacShow\ghost.h(309,43): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Administrator\Documents\VisualStudio2022Proj\C++\PacShow\PacShow\ghost.h(308): message : while compiling class template member function 'void Ghost<Starter>::setGridPosition(int,int)'
+C:\Users\Administrator\Documents\VisualStudio2022Proj\C++\PacShow\PacShow\ghost.h(48): message : see reference to function template instantiation 'void Ghost<Starter>::setGridPosition(int,int)' being compiled
+C:\Users\Administrator\Documents\VisualStudio2022Proj\C++\PacShow\PacShow\ghost.h(309,30): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Administrator\Documents\VisualStudio2022Proj\C++\PacShow\PacShow\ghost.h(81,76): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Administrator\Documents\VisualStudio2022Proj\C++\PacShow\PacShow\ghost.h(78): message : while compiling class template member function 'void Ghost<Starter>::init(void)'
+C:\Users\Administrator\Documents\VisualStudio2022Proj\C++\PacShow\PacShow\ghost.h(23): message : see reference to function template instantiation 'void Ghost<Starter>::init(void)' being compiled
+C:\Users\Administrator\Documents\VisualStudio2022Proj\C++\PacShow\PacShow\ghost.h(81,48): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Administrator\Documents\VisualStudio2022Proj\C++\PacShow\PacShow\pac.h(333,63): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Administrator\Documents\VisualStudio2022Proj\C++\PacShow\PacShow\pac.h(332): message : while compiling class template member function 'void Pac<Starter>::setGridPosition(int,int)'
+C:\Users\Administrator\Documents\VisualStudio2022Proj\C++\PacShow\PacShow\pac.h(69): message : see reference to function template instantiation 'void Pac<Starter>::setGridPosition(int,int)' being compiled
+C:\Users\Administrator\Documents\VisualStudio2022Proj\C++\PacShow\PacShow\starter.h(51): message : see reference to class template instantiation 'Pac<Starter>' being compiled
+C:\Users\Administrator\Documents\VisualStudio2022Proj\C++\PacShow\PacShow\pac.h(333,40): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Administrator\Documents\VisualStudio2022Proj\C++\PacShow\PacShow\pac.h(92,41): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Administrator\Documents\VisualStudio2022Proj\C++\PacShow\PacShow\pac.h(89): message : while compiling class template member function 'void Pac<Starter>::init(void)'
+C:\Users\Administrator\Documents\VisualStudio2022Proj\C++\PacShow\PacShow\pac.h(26): message : see reference to function template instantiation 'void Pac<Starter>::init(void)' being compiled
+C:\Users\Administrator\Documents\VisualStudio2022Proj\C++\PacShow\PacShow\pac.h(92,31): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Administrator\Documents\VisualStudio2022Proj\C++\PacShow\PacShow\pac.h(95,1): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\Administrator\Documents\VisualStudio2022Proj\C++\PacShow\PacShow\ghost.h(106,1): warning C4305: '+=': truncation from 'double' to 'float'
+C:\Users\Administrator\Documents\VisualStudio2022Proj\C++\PacShow\PacShow\ghost.h(93): message : while compiling class template member function 'void Ghost<Starter>::loop(void)'
+C:\Users\Administrator\Documents\VisualStudio2022Proj\C++\PacShow\PacShow\ghost.h(87): message : see reference to function template instantiation 'void Ghost<Starter>::loop(void)' being compiled
+C:\Users\Administrator\Documents\VisualStudio2022Proj\C++\PacShow\PacShow\pac.h(108,1): warning C4305: '+=': truncation from 'double' to 'float'
+C:\Users\Administrator\Documents\VisualStudio2022Proj\C++\PacShow\PacShow\pac.h(104): message : while compiling class template member function 'void Pac<Starter>::loop(void)'
+C:\Users\Administrator\Documents\VisualStudio2022Proj\C++\PacShow\PacShow\pac.h(97): message : see reference to function template instantiation 'void Pac<Starter>::loop(void)' being compiled
+C:\Users\Administrator\Documents\VisualStudio2022Proj\C++\PacShow\PacShow\ghost.h(329,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Administrator\Documents\VisualStudio2022Proj\C++\PacShow\PacShow\ghost.h(328): message : while compiling class template member function 'bool Ghost<Starter>::collidToPac(void)'
+C:\Users\Administrator\Documents\VisualStudio2022Proj\C++\PacShow\PacShow\ghost.h(240): message : see reference to function template instantiation 'bool Ghost<Starter>::collidToPac(void)' being compiled
+C:\Users\Administrator\Documents\VisualStudio2022Proj\C++\PacShow\PacShow\ghost.h(330,11): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Administrator\Documents\VisualStudio2022Proj\C++\PacShow\PacShow\ghost.h(323,38): warning C4244: 'return': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Administrator\Documents\VisualStudio2022Proj\C++\PacShow\PacShow\ghost.h(322): message : while compiling class template member function 'int Ghost<Starter>::getPosGridY(void)'
+C:\Users\Administrator\Documents\VisualStudio2022Proj\C++\PacShow\PacShow\ghost.h(272): message : see reference to function template instantiation 'int Ghost<Starter>::getPosGridY(void)' being compiled
+C:\Users\Administrator\Documents\VisualStudio2022Proj\C++\PacShow\PacShow\ghost.h(317,38): warning C4244: 'return': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Administrator\Documents\VisualStudio2022Proj\C++\PacShow\PacShow\ghost.h(316): message : while compiling class template member function 'int Ghost<Starter>::getPosGridX(void)'
+C:\Users\Administrator\Documents\VisualStudio2022Proj\C++\PacShow\PacShow\ghost.h(272): message : see reference to function template instantiation 'int Ghost<Starter>::getPosGridX(void)' being compiled
+C:\Users\Administrator\Documents\VisualStudio2022Proj\C++\PacShow\PacShow\pac.h(201,43): warning C4244: 'return': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Administrator\Documents\VisualStudio2022Proj\C++\PacShow\PacShow\pac.h(200): message : while compiling class template member function 'int Pac<Starter>::getPosGridY(void)'
+C:\Users\Administrator\Documents\VisualStudio2022Proj\C++\PacShow\PacShow\pac.h(247): message : see reference to function template instantiation 'int Pac<Starter>::getPosGridY(void)' being compiled
+C:\Users\Administrator\Documents\VisualStudio2022Proj\C++\PacShow\PacShow\pac.h(195,41): warning C4244: 'return': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Administrator\Documents\VisualStudio2022Proj\C++\PacShow\PacShow\pac.h(194): message : while compiling class template member function 'int Pac<Starter>::getPosGridX(void)'
+C:\Users\Administrator\Documents\VisualStudio2022Proj\C++\PacShow\PacShow\pac.h(208): message : see reference to function template instantiation 'int Pac<Starter>::getPosGridX(void)' being compiled
+  PacShow.vcxproj -> C:\Users\Administrator\Documents\VisualStudio2022Proj\C++\PacShow\x64\Debug\PacShow.exe
